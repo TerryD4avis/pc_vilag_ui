@@ -1,9 +1,16 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import jwt_decode from 'jwt-decode';
+import withAuth from './withAuth';
 
 const Dashboard = () => {
   const location = useLocation();
-  const { userDetails, token } = location.state || {};
+  const { token } = location.state || {};
+  
+  let userDetails = null;
+  if (token) {
+    userDetails = jwt_decode(token);
+  }
 
   return (
     <div>
@@ -24,4 +31,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default withAuth(Dashboard);
