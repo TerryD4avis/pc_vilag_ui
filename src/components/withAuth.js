@@ -1,18 +1,16 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
-const withAuth = (Component) => {
+const withAuth = (WrappedComponent) => {
   return (props) => {
-    const navigate = useNavigate();
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem('token');
     const userIsLoggedIn = !!token;
-
+    
     if (!userIsLoggedIn) {
-      navigate('/login');
-      return null;
+      return <Navigate to="/login" replace />;
     }
-
-    return <Component {...props} />;
+    
+    return <WrappedComponent {...props} />;
   };
 };
 
