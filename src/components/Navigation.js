@@ -17,7 +17,7 @@ function Navigation() {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
-        <li><Link to="/register">Register</Link></li>
+        {!userIsLoggedIn && <li><Link to="/register">Register</Link></li>}
         {userIsLoggedIn ? (
           <li><Link to="/login" onClick={logout}>Logout</Link></li>
         ) : (
