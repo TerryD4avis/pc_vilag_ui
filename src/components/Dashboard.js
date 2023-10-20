@@ -1,11 +1,9 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
 import jwt_decode from 'jwt-decode';
 import withAuth from './withAuth';
 
 const Dashboard = () => {
-  const location = useLocation();
-  const { token } = location.state || {};
+  const token = localStorage.getItem('token');
   
   let userDetails = null;
   if (token) {
